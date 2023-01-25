@@ -11,13 +11,15 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor
 public class RestaurantDto {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
     public static class Request {
-        private Long restoId;
+        private String restoId;
         private String restoName;
         private Long latitude;
         private Long longitude;
@@ -32,7 +34,7 @@ public class RestaurantDto {
 
     @Getter
     public static class Response {
-        private Long restoId;
+        private String restoId;
         private String restoName;
         private Long latitude;
         private Long longitude;

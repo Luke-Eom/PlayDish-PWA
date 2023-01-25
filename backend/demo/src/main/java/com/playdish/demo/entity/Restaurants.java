@@ -3,6 +3,8 @@ package com.playdish.demo.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,11 +17,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 public class Restaurants {
-    private Long restoId;
+    @Id
+    private String restoId;
+    
     private String restoName;
     private Long latitude;
     private Long longitude;
     private String category;
     private int commentCount;
+    @OneToMany
     private List<Comment> comments; 
 }
