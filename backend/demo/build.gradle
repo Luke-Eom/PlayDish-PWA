@@ -28,7 +28,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//implementation 'org.modelmapper:modelmapper'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
 }
 
 tasks.named('test') {

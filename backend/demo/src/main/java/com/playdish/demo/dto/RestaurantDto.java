@@ -11,8 +11,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor
 public class RestaurantDto {
     @Data
     @AllArgsConstructor
@@ -52,4 +50,5 @@ public class RestaurantDto {
             this.comments = resto.getComments().stream().map(CommentDto.Response::new).collect(Collectors.toList()); //map(CommentDto.Response::new).collect(Collectors.toList());
         }
     }
+
 }

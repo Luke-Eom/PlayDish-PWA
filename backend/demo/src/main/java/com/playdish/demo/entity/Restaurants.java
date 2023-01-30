@@ -1,5 +1,6 @@
 package com.playdish.demo.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Restaurants {
+public class Restaurants implements Serializable{
     @Id
     private String restoId;
     
@@ -25,6 +26,8 @@ public class Restaurants {
     private Long longitude;
     private String category;
     private int commentCount;
-    @OneToMany
-    private List<Comment> comments; 
+    @OneToMany(mappedBy = "restoId")
+    private List<Comment> comments;
+    
+
 }
