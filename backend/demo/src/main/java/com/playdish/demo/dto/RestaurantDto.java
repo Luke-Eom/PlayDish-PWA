@@ -1,8 +1,5 @@
 package com.playdish.demo.dto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.playdish.demo.entity.Restaurants;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +35,6 @@ public class RestaurantDto {
         private Long longitude;
         private String category;
         private int commentCount;
-        private List<CommentDto.Response> comments;
 
         public Response(Restaurants resto) {
             this.restoId = resto.getRestoId();
@@ -47,7 +43,6 @@ public class RestaurantDto {
             this.longitude = resto.getLongitude();
             this.category = resto.getCategory();
             this.commentCount = resto.getCommentCount();
-            this.comments = resto.getComments().stream().map(CommentDto.Response::new).collect(Collectors.toList()); //map(CommentDto.Response::new).collect(Collectors.toList());
         }
     }
 

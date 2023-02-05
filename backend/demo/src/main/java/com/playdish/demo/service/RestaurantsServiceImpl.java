@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,16 @@ public class RestaurantsServiceImpl implements RestaurantsService {
     @Autowired
     RestaurantsRepository restoRepo;
 
+    @Autowired
+    ModelMapper modelMapper;
+
+    
     @Transactional
     public ArrayList<RestaurantDto> getRestaurantsAll() throws Exception {
         ArrayList<Restaurants> restoList = (ArrayList<Restaurants>)restoRepo.findAll();
 
-        return restoList.stream().map(Restaurants -> ModelMapperUtils.getModelMapper().map(Restaurants, RestaurantDto.class)).collect(Collectors.toList());
+        return restoList.stream().map(Restaurants -> modelMapper.map(RestaurantDto.class)).collect(Collectors.toList());
+        // 모델 맵퍼 사용 방법 -> entity/ dto 매칭 
         // ArrayList<Restaurants> all = (ArrayList<Restaurants>)restoRepo.findAll();
         // ArrayList<RestaurantDto> allDto = new ArrayList<RestaurantDto>();
         // for(Restaurants i :all) {
@@ -46,13 +52,13 @@ public class RestaurantsServiceImpl implements RestaurantsService {
 
     @Override
     public RestaurantDto getRestaurantByRestoName(String restoName) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub 이름검색 - 비슷한 이름 및 없는결과 가져올시 exception 처리
         return null;
     }
 
     @Override
     public boolean addRestaurant(RestaurantDto restaurant) throws Exception {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub - 로그인 구현 후 권한에따라
         return false;
     }
 
