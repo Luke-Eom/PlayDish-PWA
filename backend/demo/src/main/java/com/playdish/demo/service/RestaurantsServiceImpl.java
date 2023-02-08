@@ -1,16 +1,13 @@
 package com.playdish.demo.service;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playdish.demo.dto.RestaurantDto;
 import com.playdish.demo.entity.Restaurants;
+import com.playdish.demo.mapper.RestaurantMapper;
 import com.playdish.demo.repository.RestaurantsRepository;
 
 @Service
@@ -18,17 +15,16 @@ public class RestaurantsServiceImpl implements RestaurantsService {
 
     @Autowired
     RestaurantsRepository restoRepo;
-
-    @Autowired
-    ModelMapper modelMapper;
-
     
     @Transactional
     public ArrayList<RestaurantDto> getRestaurantsAll() throws Exception {
         ArrayList<Restaurants> restoList = (ArrayList<Restaurants>)restoRepo.findAll();
-
-        return restoList.stream().map(Restaurants -> modelMapper.map(RestaurantDto.class)).collect(Collectors.toList());
-        // 모델 맵퍼 사용 방법 -> entity/ dto 매칭 
+        ArrayList<RestaurantDto> allDto = new ArrayList<RestaurantDto>();
+        for(Restaurants i : restoList) {
+            allDto.add(RestaurantMapper.INSTANCE.RestaurantToDto(i));
+        } 
+        return allDto;
+        // 모델 맵퍼 사용 방법 -> entity/ dto 매칭     
         // ArrayList<Restaurants> all = (ArrayList<Restaurants>)restoRepo.findAll();
         // ArrayList<RestaurantDto> allDto = new ArrayList<RestaurantDto>();
         // for(Restaurants i :all) {
