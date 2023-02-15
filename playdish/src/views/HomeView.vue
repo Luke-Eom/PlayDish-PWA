@@ -1,7 +1,7 @@
 <template>
   <hello-world />
 </template>
-
+aa
 <script>
   import HelloWorld from '../components/HelloWorld'
 

@@ -22,3 +22,4 @@ public class Comment {
     private String contents;
     private int commentLikeCount;
 }
+

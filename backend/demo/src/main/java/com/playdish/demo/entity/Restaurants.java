@@ -11,13 +11,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Restaurants implements Serializable{
+@Setter
+public class Restaurants implements Serializable, CommonEntity{
     @Id
     private String restoId;
     

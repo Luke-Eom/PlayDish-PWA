@@ -1,5 +1,8 @@
 package com.playdish.demo.entity;
 
-public class CommonEntity {
-    // createdTime, updatedTime
+import javax.persistence.Entity;
+
+@Entity
+public interface CommonEntity {
+    //createdTime,updatedTime;
 }

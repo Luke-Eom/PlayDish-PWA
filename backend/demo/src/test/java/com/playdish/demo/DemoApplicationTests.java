@@ -1,8 +1,14 @@
 package com.playdish.demo;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.playdish.demo.dto.RestaurantDto;
+import com.playdish.demo.entity.Restaurants;
+import com.playdish.demo.mapper.RestaurantMapper;
 import com.playdish.demo.repository.RestaurantsRepository;
 
 @SpringBootTest
@@ -18,17 +24,28 @@ class DemoApplicationTests {
 	}
 
 	@Test
-	void modelMapperTest() {
-		// RestaurantDto restoDto = new RestaurantDto();
-    	// restoDto.setRestoId("12345");
-   	 	// restoDto.set("oing");
-    	// restoDto.set("동작구");
-    
-    	// ModelMapper modelMapper = new ModelMapper();
-    	// EmployeeEntity employeeEntity = modelMapper.map(employeeDto, EmployeeEntity.class);
-    
-    	// System.out.println(employeeEntity.getEmployeeId());
-    	// System.out.println(employeeEntity.getEmployeeName());
-    	// System.out.println(employeeEntity.getEmployeeAddr());
+	public void restoMapStructTest() {
+		Restaurants resto = new Restaurants();
+		resto.setRestoId("d1");
+		resto.setRestoName("pd");
+		ArrayList<Restaurants> restoList = (ArrayList<Restaurants>)restoRepo.findAll();
+        ArrayList<RestaurantDto> allDto = new ArrayList<RestaurantDto>();
+        for(Restaurants i : restoList) {
+            allDto.add(RestaurantMapper.INSTANCE.RestaurantToDto(i));
+        }
+	}
+
+	@Test
+	public void restoSearchByName(String restoName) {
+		Restaurants resto = new Restaurants();
+		resto.setRestoId("d1");
+		resto.setRestoName("pd");
+		restoName = "pd";
+		Restaurants restoEntity = restoRepo.findByRestoName(restoName);
+        RestaurantDto restoDto = RestaurantMapper.INSTANCE.RestaurantToDto(restoEntity);
+		restoDto.getClass();
+
 	}
 }
+
+// assert~(); 테스트하려는 객체들이 일치하는지 확인
